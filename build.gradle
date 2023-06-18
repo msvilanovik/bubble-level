@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+android {
+    compileSdk 32
+    defaultConfig {
+        applicationId "com.zipoapps.level"
+        minSdk 21
+        targetSdk 32
+        versionCode 120
+        versionName "1.2.0"
+        archivesBaseName = "bubble-level-v${versionName}"
+        resConfigs "en"
+        vectorDrawables.useSupportLibrary = true
+    }
+    signingConfigs {
+        config {
+            storeFile file('bubble-level.jks')
+            storePassword 'Y8NTeZv7QXfX'
+            keyAlias 'bubble-level'
+            keyPassword 'Y8NTeZv7QXfX'
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.config
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.camera:camera-core:1.1.0'
+    implementation 'androidx.camera:camera-camera2:1.1.0'
+    implementation 'androidx.camera:camera-lifecycle:1.1.0'
+    implementation 'androidx.camera:camera-view:1.1.0'
+
+    implementation "com.zipoapps.premiumhelper:premiumhelper:3.0.21"
+}
+
+
